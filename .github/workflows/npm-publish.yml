@@ -15,5 +15,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
+      - uses: zhipenglin/github-pages-deploy-action@v4
       - run: npm i
       - run: npm run deploy
+        with:
+          access-token: ${{ secrets.ACCESS_GITHUB_API_TOKEN }}
