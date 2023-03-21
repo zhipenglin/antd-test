@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {Dropdown, Modal, Button, Space} from 'antd';
 import {useState} from 'react';
