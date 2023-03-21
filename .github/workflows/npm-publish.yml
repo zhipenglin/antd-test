@@ -10,16 +10,18 @@ jobs:
   publish-npm:
     runs-on: ubuntu-latest
     permissions:
-      pages: write      # to deploy to Pages
-      id-token: write   # to verify the deployment originates from an appropriate source
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - uses: actions/deploy-pages@v1
-        with:
-          token: ${{ secrets.TOKEN }}
+      - name: Build
       - run: npm i
-      - run: npm run deploy
+      - run: npm build
+      - name: Deploy
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.TOKEN }}
+          publish_dir: ./build
